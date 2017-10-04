@@ -197,4 +197,10 @@ public class Cicilan {
         this.bulan = bulan;
     }
 
+    public boolean isIsApprove(double limit,double cicilan) {
+        boolean setuju = false;
+        if(limitPinjaman() > cicilanPerbulan())
+        setuju = true;
+        return setuju;
+    }
 }

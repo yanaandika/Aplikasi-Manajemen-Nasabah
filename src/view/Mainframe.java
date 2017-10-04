@@ -7,6 +7,8 @@ package view;
 
 import com.sun.glass.events.KeyEvent;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -326,6 +328,17 @@ public class Mainframe extends javax.swing.JFrame {
                                         .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGroup(hasilAnalisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hasilAnalisaLayout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(hasilAnalisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txtHasilBunga, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                                            .addComponent(txtBulan))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(hasilAnalisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel32)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hasilAnalisaLayout.createSequentialGroup()
+                                                .addGap(4, 4, 4)
+                                                .addComponent(jLabel31))))
                                     .addGroup(hasilAnalisaLayout.createSequentialGroup()
                                         .addGroup(hasilAnalisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(hasilAnalisaLayout.createSequentialGroup()
@@ -342,22 +355,12 @@ public class Mainframe extends javax.swing.JFrame {
                                             .addGroup(hasilAnalisaLayout.createSequentialGroup()
                                                 .addComponent(jLabel44)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtHasilGajiPokok, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(0, 5, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hasilAnalisaLayout.createSequentialGroup()
-                                        .addComponent(jLabel34)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtHasilHarga))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hasilAnalisaLayout.createSequentialGroup()
-                                        .addGroup(hasilAnalisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(txtHasilBunga, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                                            .addComponent(txtBulan))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(hasilAnalisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel32)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hasilAnalisaLayout.createSequentialGroup()
-                                                .addGap(4, 4, 4)
-                                                .addComponent(jLabel31))))))
+                                                .addComponent(txtHasilGajiPokok, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(hasilAnalisaLayout.createSequentialGroup()
+                                                .addComponent(jLabel34)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtHasilHarga)))
+                                        .addGap(0, 5, Short.MAX_VALUE))))
                             .addGroup(hasilAnalisaLayout.createSequentialGroup()
                                 .addComponent(lblHasil1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -369,13 +372,12 @@ public class Mainframe extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel39)
                                         .addGap(6, 6, 6)
-                                        .addComponent(txtHasilCicilan, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                        .addComponent(txtHasilCicilan, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(hasilAnalisaLayout.createSequentialGroup()
                                         .addComponent(jLabel46)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblHasilTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(69, 69, 69)))
+                                        .addComponent(lblHasilTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel41)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())))
@@ -729,7 +731,19 @@ public class Mainframe extends javax.swing.JFrame {
                     txtHasilNamaBarang.setText(String.valueOf(nsb.get(i).getNamabarang()));
                     txtHasilPenghasilanTambahan.setText(String.valueOf(nsb.get(i).getPenghasilanTambahan()));
                     txtHasiluangMuka.setText(String.valueOf(nsb.get(i).getUangMuka()));
-                    txtHasilCicilan.setText(String.valueOf(nsb.get(i).pokokCicilan()));
+                    double cicilan = nsb.get(i).cicilanPerbulan();
+                    double limit = nsb.get(i).limitPinjaman();
+                    boolean correct = nsb.get(i).isIsApprove(limit, cicilan);
+                    if (correct) {
+                        lblHasil1.setText("Disetujui");
+                        txtHasilCicilan.setText(String.valueOf(nsb.get(i).pokokCicilan()));
+                        Date dNow = new Date();
+                        SimpleDateFormat ft
+                                = new SimpleDateFormat("EEEE dd-MMMM-yyyy 'at' hh:mm:ss a ");
+                        lblHasilTanggal.setText(ft.format(dNow));
+                    } else {
+                        lblHasil.setText("Ditolak");
+                    }
                 }
             }
         });
