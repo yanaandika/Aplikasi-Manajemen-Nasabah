@@ -1,2 +1,3 @@
-Yana Andika, 20, Jakarta, Single, 0, 20000000.0, 500000.0, 0, Sepeda Motor, 1500000.0, 1000000.0, 6, 10
-Pralambang, 22, Jakarta, Single, 1, 50000000.0, 500000.0, 2000000.0, Mobil, 15000000.0, 10000000.0, 7, 10
+Yana Andika, 20, Jakarta, Single, 0, 2000000.0, 500000.0, 0, Sepeda Motor, 1500000.0, 1000000.0, 6, 10, PNS
+Pralambang, 22, Jakarta, Single, 1, 5000000.0, 500000.0, 200000.0, Mobil, 1500000.0, 1000000.0, 7, 10, Wirausaha
+Andini Pramesta Suri, 10, Jakarta, Menikah, 2, 1000000.0, 100000.0, 200000.0, Mobil, 1500000.0, 1000000.0, 7, 10, Guru

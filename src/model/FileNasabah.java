@@ -42,7 +42,7 @@ public class FileNasabah {
             Double bunga = Double.parseDouble(array[11].trim());
             Integer bulan = Integer.parseInt(array[12].trim());
 
-            Nasabah nsb = new Nasabah(array[0], Integer.parseInt(array[1].trim()), array[2], array[3], jumlahTanggungan, gajiPokok, penghasilan, bonus, array[8], harga, uangMuka, bunga, bulan);
+            Nasabah nsb = new Nasabah(array[0], Integer.parseInt(array[1].trim()), array[2], array[3], jumlahTanggungan, gajiPokok, penghasilan, bonus, array[8], harga, uangMuka, bunga, bulan,array[13]);
 
             nasabah.add(nsb);
 

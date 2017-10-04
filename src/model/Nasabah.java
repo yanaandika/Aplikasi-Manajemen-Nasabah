@@ -14,14 +14,18 @@ public class Nasabah extends Cicilan{
     private Integer Umur;
      private String alamat;
     private String Status;
+    private  String pekerjaan;
 
-    public Nasabah(String Nama, Integer Umur, String alamat, String Status, int jumlahTanggungan, double gajiPokok, double penghasilanTambahan, double bonus, String namabarang, double harga, double uangMuka, double bunga, int bulan) {
+    public Nasabah(String Nama, Integer Umur, String alamat, String Status, int jumlahTanggungan, double gajiPokok, double penghasilanTambahan, double bonus, String namabarang, double harga, double uangMuka, double bunga, int bulan, String pekerjaan) {
         super(jumlahTanggungan, gajiPokok, penghasilanTambahan, bonus, namabarang, harga, uangMuka, bunga, bulan);
         this.Nama = Nama;
         this.Umur = Umur;
         this.alamat = alamat;
         this.Status = Status;
+        this.pekerjaan = pekerjaan;
     }
+
+    
     /**
      * @return the Nama
      */
@@ -76,6 +80,20 @@ public class Nasabah extends Cicilan{
      */
     public void setAlamat(String alamat) {
         this.alamat = alamat;
+    }
+
+    /**
+     * @return the pekerjaan
+     */
+    public String getPekerjaan() {
+        return pekerjaan;
+    }
+
+    /**
+     * @param pekerjaan the pekerjaan to set
+     */
+    public void setPekerjaan(String pekerjaan) {
+        this.pekerjaan = pekerjaan;
     }
 
     /**
